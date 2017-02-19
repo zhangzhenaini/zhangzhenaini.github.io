@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>当你静了,世界就静了</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说说JSON和JSONP，也许你会豁然开朗
+　
+　　由于Sencha Touch 2这种开发模式的特性，基本决定了它原生的数据交互行为几乎只能通过AJAX来实现。
+　　当然了，通过调用强大的PhoneGap插件然后打包，你可以实现100%的Socket通讯和本地数据库功能，又或者通过HTML5的WebSocket也可以实现与服务器的通讯和服务端推功能，但这两种方式都有其局限性，前者需要PhoneG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当你静了,世界就静了">
+<meta property="og:url" content="http://yoursite.com/2017/02/19/说说JSON和JSONP/index.html">
+<meta property="og:site_name" content="当你静了,世界就静了">
+<meta property="og:description" content="说说JSON和JSONP，也许你会豁然开朗
+　
+　　由于Sencha Touch 2这种开发模式的特性，基本决定了它原生的数据交互行为几乎只能通过AJAX来实现。
+　　当然了，通过调用强大的PhoneGap插件然后打包，你可以实现100%的Socket通讯和本地数据库功能，又或者通过HTML5的WebSocket也可以实现与服务器的通讯和服务端推功能，但这两种方式都有其局限性，前者需要PhoneG">
+<meta property="og:updated_time" content="2017-02-19T00:39:58.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当你静了,世界就静了">
+<meta name="twitter:description" content="说说JSON和JSONP，也许你会豁然开朗
+　
+　　由于Sencha Touch 2这种开发模式的特性，基本决定了它原生的数据交互行为几乎只能通过AJAX来实现。
+　　当然了，通过调用强大的PhoneGap插件然后打包，你可以实现100%的Socket通讯和本地数据库功能，又或者通过HTML5的WebSocket也可以实现与服务器的通讯和服务端推功能，但这两种方式都有其局限性，前者需要PhoneG">
+  
+    <link rel="alternative" href="/atom.xml" title="当你静了,世界就静了" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://upload.zgswcn.com/2017/0217/1487300725292.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("your_app_id", "your_app_key");</script>
+<script src="/js/Counter.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://upload.zgswcn.com/2017/0217/1487300725292.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">张震</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">张震</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://upload.zgswcn.com/2017/0217/1487300725292.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">张震</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-说说JSON和JSONP" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/19/说说JSON和JSONP/" class="article-date">
+  	<time datetime="2017-02-19T00:39:02.216Z" itemprop="datePublished">2017-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>说说JSON和JSONP，也许你会豁然开朗</p>
+<p>　</p>
+<p>　　由于Sencha Touch 2这种开发模式的特性，基本决定了它原生的数据交互行为几乎只能通过AJAX来实现。</p>
+<p>　　当然了，通过调用强大的PhoneGap插件然后打包，你可以实现100%的Socket通讯和本地数据库功能，又或者通过HTML5的WebSocket也可以实现与服务器的通讯和服务端推功能，但这两种方式都有其局限性，前者需要PhoneGap支持，后者要求用户设备必须支持WebSocket，因此都不能算是ST2的原生解决方案，原生的只有AJAX。</p>
+<p>　　说到AJAX就会不可避免的面临两个问题，第一个是AJAX以何种格式来交换数据？第二个是跨域的需求如何解决？这两个问题目前都有不同的解决方案，比如数据可以用自定义字符串或者用XML来描述，跨域可以通过服务器端代理来解决。</p>
+<p>　　但到目前为止最被推崇或者说首选的方案还是用JSON来传数据，靠JSONP来跨域。而这就是本文将要讲述的内容。</p>
+<p>　　JSON(JavaScript Object Notation)和JSONP(JSON with Padding)虽然只有一个字母的差别，但其实他们根本不是一回事儿：JSON是一种数据交换格式，而JSONP是一种依靠开发人员的聪明才智创造出的一种非官方跨域数据交互协议。我们拿最近比较火的谍战片来打个比方，JSON是地下党们用来书写和交换情报的“暗号”，而JSONP则是把用暗号书写的情报传递给自己同志时使用的接头方式。看到没？一个是描述信息的格式，一个是信息传递双方约定的方法。</p>
+<p>　　既然随便聊聊，那我们就不再采用教条的方式来讲述，而是把关注重心放在帮助开发人员理解是否应当选择使用以及如何使用上。</p>
+<p>　　什么是JSON</p>
+<p>　　前面简单说了一下，JSON是一种基于文本的数据交换方式，或者叫做数据描述格式，你是否该选用他首先肯定要关注它所拥有的优点。</p>
+<p>　　JSON的优点：</p>
+<p>　　1、基于纯文本，跨平台传递极其简单；</p>
+<p>　　2、Javascript原生支持，后台语言几乎全部支持；</p>
+<p>　　3、轻量级数据格式，占用字符数量极少，特别适合互联网传递；</p>
+<p>　　4、可读性较强，虽然比不上XML那么一目了然，但在合理的依次缩进之后还是很容易识别的；</p>
+<p>　　5、容易编写和解析，当然前提是你要知道数据结构；</p>
+<p>　　JSON的缺点当然也有，但在作者看来实在是无关紧要的东西，所以不再单独说明。</p>
+<p>　　JSON的格式或者叫规则：</p>
+<p>　　JSON能够以非常简单的方式来描述数据结构，XML能做的它都能做，因此在跨平台方面两者完全不分伯仲。</p>
+<p>　　1、JSON只有两种数据类型描述符，大括号{}和方括号[]，其余英文冒号:是映射符，英文逗号,是分隔符，英文双引号””是定义符。</p>
+<p>　　2、大括号{}用来描述一组“不同类型的无序键值对集合”（每个键值对可以理解为OOP的属性描述），方括号[]用来描述一组“相同类型的有序数据集合”（可对应OOP的数组）。</p>
+<p>　　3、上述两种集合中若有多个子项，则通过英文逗号,进行分隔。</p>
+<p>　　4、键值对以英文冒号:进行分隔，并且建议键名都加上英文双引号””，以便于不同语言的解析。</p>
+<p>　　5、JSON内部常用数据类型无非就是字符串、数字、布尔、日期、null 这么几个，字符串必须用双引号引起来，其余的都不用，日期类型比较特殊，这里就不展开讲述了，只是建议如果客户端没有按日期排序功能需求的话，那么把日期时间直接作为字符串传递就好，可以省去很多麻烦。</p>
+<p>　　JSON实例：</p>
+<p>// 描述一个人<br>var person = {<br>    “Name”: “Bob”,<br>    “Age”: 32,<br>    “Company”: “IBM”,<br>    “Engineer”: true<br>}</p>
+<p>// 获取这个人的信息<br>var personAge = person.Age;</p>
+<p>// 描述几个人<br>var members = [<br>    {<br>        “Name”: “Bob”,<br>        “Age”: 32,<br>        “Company”: “IBM”,<br>        “Engineer”: true<br>    },<br>    {<br>        “Name”: “John”,<br>        “Age”: 20,<br>        “Company”: “Oracle”,<br>        “Engineer”: false<br>    },<br>    {<br>        “Name”: “Henry”,<br>        “Age”: 45,<br>        “Company”: “Microsoft”,<br>        “Engineer”: false<br>    }<br>]</p>
+<p>// 读取其中John的公司名称<br>var johnsCompany = members[1].Company;</p>
+<p>// 描述一次会议<br>var conference = {<br>    “Conference”: “Future Marketing”,<br>    “Date”: “2012-6-1”,<br>    “Address”: “Beijing”,<br>    “Members”:<br>    [<br>        {<br>            “Name”: “Bob”,<br>            “Age”: 32,<br>            “Company”: “IBM”,<br>            “Engineer”: true<br>        },<br>        {<br>            “Name”: “John”,<br>            “Age”: 20,<br>            “Company”: “Oracle”,<br>            “Engineer”: false<br>        },<br>        {<br>            “Name”: “Henry”,<br>            “Age”: 45,<br>            “Company”: “Microsoft”,<br>            “Engineer”: false<br>        }<br>    ]<br>}</p>
+<p>// 读取参会者Henry是否工程师<br>var henryIsAnEngineer = conference.Members[2].Engineer;<br>　　关于JSON，就说这么多，更多细节请在开发过程中查阅资料深入学习。</p>
+<p>　　什么是JSONP</p>
+<p>　　先说说JSONP是怎么产生的：</p>
+<p>　　其实网上关于JSONP的讲解有很多，但却千篇一律，而且云里雾里，对于很多刚接触的人来讲理解起来有些困难，小可不才，试着用自己的方式来阐释一下这个问题，看看是否有帮助。</p>
+<p>　　1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</p>
+<p>　　2、不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<script>、<img>、<iframe>）；</p>
+<p>　　3、于是可以判断，当前阶段如果想通过纯web端（ActiveX控件、服务端代理、属于未来的HTML5之Websocket等方式不算）跨域访问数据就只有一种可能，那就是在远程服务器上设法把数据装进js格式的文件里，供客户端调用和进一步处理；</p>
+<p>　　4、恰巧我们已经知道有一种叫做JSON的纯字符数据格式可以简洁的描述复杂数据，更妙的是JSON还被js原生支持，所以在客户端几乎可以随心所欲的处理这种格式的数据；</p>
+<p>　　5、这样子解决方案就呼之欲出了，web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），显而易见，服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</p>
+<p>　　6、客户端在对JSON文件调用成功之后，也就获得了自己所需的数据，剩下的就是按照自己需求进行处理和展现了，这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</p>
+<p>　　7、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</p>
+<p>　　如果对于callback参数如何使用还有些模糊的话，我们后面会有具体的实例来讲解。</p>
+<p>　　JSONP的客户端具体实现：</p>
+<p>　　不管jQuery也好，ExtJs也罢，又或者是其他支持jsonp的框架，他们幕后所做的工作都是一样的，下面我来循序渐进的说明一下jsonp在客户端的实现：</p>
+<p>　　1、我们知道，哪怕跨域js文件中的代码（当然指符合web脚本安全策略的），web页面也是可以无条件执行的。</p>
+<p>　　远程服务器remoteserver.com根目录下有个remote.js文件代码如下：</p>
+<p>alert(‘我是远程文件’);<br>　　本地服务器localserver.com下有个jsonp.html页面代码如下：</p>
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a></p>
+<p><html xmlns="http://www.w3.org/1999/xhtml"></p>
+<p><head><br>    <title></title><br>    <script type="text/javascript" src="http://remoteserver.com/remote.js"></script><br></p>
+<body>
+
+<p></p></body><br><br>　　毫无疑问，页面将会弹出一个提示窗体，显示跨域调用成功。<p></p>
+<p>　　2、现在我们在jsonp.html页面定义一个函数，然后在远程remote.js中传入数据进行调用。</p>
+<p>　　jsonp.html页面代码如下：</p>
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a></p>
+<p><html xmlns="http://www.w3.org/1999/xhtml"></html></p>
+<p><head><br>    <title></title><br>    <script type="text/javascript"><br>    var localHandler = function(data){<br>        alert(‘我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：’ + data.result);<br>    };<br>    </script><br>    <script type="text/javascript" src="http://remoteserver.com/remote.js"></script><br></head></p>
+<body>
+
+<p></p></body><br><br>　　remote.js文件代码如下：<p></p>
+<p>localHandler({“result”:”我是远程js带来的数据”});<br>　　运行之后查看结果，页面成功弹出提示窗口，显示本地函数被跨域的远程js调用成功，并且还接收到了远程js带来的数据。很欣喜，跨域远程获取数据的目的基本实现了，但是又一个问题出现了，我怎么让远程js知道它应该调用的本地函数叫什么名字呢？毕竟是jsonp的服务者都要面对很多服务对象，而这些服务对象各自的本地函数都不相同啊？我们接着往下看。</p>
+<p>　　3、聪明的开发者很容易想到，只要服务端提供的js脚本是动态生成的就行了呗，这样调用者可以传一个参数过去告诉服务端“我想要一段调用XXX函数的js代码，请你返回给我”，于是服务器就可以按照客户端的需求来生成js脚本并响应了。</p>
+<p>　　看jsonp.html页面的代码：</p>
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a></p>
+<p><html xmlns="http://www.w3.org/1999/xhtml"></html></p>
+<p><head><br>    <title></title><br>    <script type="text/javascript"><br>    // 得到航班信息查询结果后的回调函数<br>    var flightHandler = function(data){<br>        alert(‘你查询的航班结果是：票价 ‘ + data.price + ‘ 元，’ + ‘余票 ‘ + data.tickets + ‘ 张。’);<br>    };<br>    // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）<br>    var url = “<a href="http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler">http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler</a>“;<br>    // 创建script标签，设置其属性<br>    var script = document.createElement(‘script’);<br>    script.setAttribute(‘src’, url);<br>    // 把script标签加入head，此时调用开始<br>    document.getElementsByTagName(‘head’)[0].appendChild(script);<br>    </script><br></head></p>
+<body>
+
+<p></p></body><br><br>　　这次的代码变化比较大，不再直接把远程js文件写死，而是编码实现动态查询，而这也正是jsonp客户端实现的核心部分，本例中的重点也就在于如何完成jsonp调用的全过程。<p></p>
+<p>　　我们看到调用的url中传递了一个code参数，告诉服务器我要查的是CA1998次航班的信息，而callback参数则告诉服务器，我的本地回调函数叫做flightHandler，所以请把查询结果传入这个函数中进行调用。</p>
+<p>　　OK，服务器很聪明，这个叫做flightResult.aspx的页面生成了一段这样的代码提供给jsonp.html（服务端的实现这里就不演示了，与你选用的语言无关，说到底就是拼接字符串）：</p>
+<p>flightHandler({<br>    “code”: “CA1998”,<br>    “price”: 1780,<br>    “tickets”: 5<br>});<br>　　我们看到，传递给flightHandler函数的是一个json，它描述了航班的基本信息。运行一下页面，成功弹出提示窗口，jsonp的执行全过程顺利完成！</p>
+<p>　　4、到这里为止的话，相信你已经能够理解jsonp的客户端实现原理了吧？剩下的就是如何把代码封装一下，以便于与用户界面交互，从而实现多次和重复调用。</p>
+<p>　　什么？你用的是jQuery，想知道jQuery如何实现jsonp调用？好吧，那我就好人做到底，再给你一段jQuery使用jsonp的代码（我们依然沿用上面那个航班信息查询的例子，假定返回jsonp结果不变）：</p>
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</a><br> <html xmlns="http://www.w3.org/1999/xhtml"><br> <head><br>     <title>Untitled Page</title><br>      &lt;script type=”text/javascript” src=jquery.min.js”&gt;<br>      <script type="text/javascript"><br>     jQuery(document).ready(function(){<br>        $.ajax({<br>             type: “get”,<br>             async: false,<br>             url: “<a href="http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998">http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998</a>“,<br>             dataType: “jsonp”,<br>             jsonp: “callback”,//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)<br>             jsonpCallback:”flightHandler”,//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写”?”，jQuery会自动为你处理数据<br>             success: function(json){<br>                 alert(‘您查询到航班信息：票价： ‘ + json.price + ‘ 元，余票： ‘ + json.tickets + ‘ 张。’);<br>             },<br>             error: function(){<br>                 alert(‘fail’);<br>             }<br>         });<br>     });<br>     </script><br>     </head><br>  <body><br>  </body><br> </html><br>　　是不是有点奇怪？为什么我这次没有写flightHandler这个函数呢？而且竟然也运行成功了！哈哈，这就是jQuery的功劳了，jquery在处理jsonp类型的ajax时（还是忍不住吐槽，虽然jquery也把jsonp归入了ajax，但其实它们真的不是一回事儿），自动帮你生成回调函数并把数据取出来供success属性方法来调用，是不是很爽呀？</p>
+<p>　　好啦，写到这里，我已经无力再写下去，又困又累，得赶紧睡觉。朋友们要是看这不错，觉得有启发，给点个“推荐”呗！由于实在比较简单，所以就不再提供demo源码下载了。</p>
+<p>　　没想到上了博客园的头条推荐。看到大家对这篇文章的认可和评论，还是很开心的，这里针对ajax与jsonp的异同再做一些补充说明：</p>
+<p>　　4月20日下午补充</p>
+<p>　　1、ajax和jsonp这两种技术在调用方式上“看起来”很像，目的也一样，都是请求一个url，然后把服务器返回的数据进行处理，因此jquery和ext等框架都把jsonp作为ajax的一种形式进行了封装；</p>
+<p>　　2、但ajax和jsonp其实本质上是不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是动态添加<script>标签来调用服务器提供的js脚本。</p>
+<p>　　3、所以说，其实ajax与jsonp的区别不在于是否跨域，ajax通过服务端代理一样可以实现跨域，jsonp本身也不排斥同域的数据的获取。</p>
+<p>　　4、还有就是，jsonp是一种方式或者说非强制性协议，如同ajax一样，它也不一定非要用json格式来传递数据，如果你愿意，字符串都行，只不过这样不利于用jsonp提供公开服务。</p>
+<p>　　总而言之，jsonp不是ajax的一个特例，哪怕jquery等巨头把jsonp封装进了ajax，也不能改变这一点！</p>
+<p>476</p>
+</script></p>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/18/html5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="说说JSON和JSONP" data-title="" data-url="http://yoursite.com/2017/02/19/说说JSON和JSONP/"  data-images="http://upload.zgswcn.com/2017/0217/1487300725292.jpg" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2017 张震
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
